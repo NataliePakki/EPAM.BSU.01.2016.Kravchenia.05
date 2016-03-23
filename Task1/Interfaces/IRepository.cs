@@ -7,6 +7,6 @@ namespace Task1.Interfaces{
         void Add(T item); 
         void Remove(T item);
         List<Book> FindAll(IEqualityComparer<T> comparer);
-        List<Book> Sort(IComparer<T> comparer);
+        void Sort(IComparer<T> comparer);
     }
 }

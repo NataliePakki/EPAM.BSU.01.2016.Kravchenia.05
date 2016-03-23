@@ -48,8 +48,8 @@ namespace Task1 {
            throw new NotImplementedException();
     }
 
-    public List<Book> Sort(IComparer<Book> comparer){
-           throw new NotImplementedException();
+    public void Sort(IComparer<Book> comparer){
+           books.Sort(comparer);
     }
    public void Save(){
        provider.Save(books);

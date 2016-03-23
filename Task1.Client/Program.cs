@@ -23,9 +23,18 @@ namespace Task1.Client{
                         WritterHelper.DeleteBook(repository);
                         break;
                     case "4":
-                        WritterHelper.SaveToFile(repository);
+                        WritterHelper.SortedByTag(repository,"name");
                         break;
                     case "5":
+                        WritterHelper.SortedByTag(repository,"author");
+                        break;
+                    case "6":
+                        WritterHelper.SortedByTag(repository,"price");
+                        break;
+                    case "7":
+                        WritterHelper.SaveToFile(repository);
+                        break;
+                    case "8":
                         working = false;
                         break;
                     default:

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Task1.BookExceptions;
+using Task1.Sort;
 
 namespace Task1.Client{
     public static class WritterHelper{
@@ -9,8 +10,11 @@ namespace Task1.Client{
             Console.WriteLine("1) show whole collection");
             Console.WriteLine("2) add new book");
             Console.WriteLine("3) delete book");
-            Console.WriteLine("4) save to file");
-            Console.WriteLine("5) exit");
+            Console.WriteLine("4) sort by name");
+            Console.WriteLine("5) sort by author");
+            Console.WriteLine("6) sort by price");
+            Console.WriteLine("7) save to file");
+            Console.WriteLine("8) exit");
             Line();
         }
         public static void AddBook(BookRepository db){
@@ -59,6 +63,23 @@ namespace Task1.Client{
             }
             Line();
         }
+
+        public static void SortedByTag(BookRepository repository, string tag) {
+            switch (tag) {
+                case "name":
+                    repository.Sort(new SortedByName());
+                    break;
+                case "author":
+                    repository.Sort(new SortedByAuthor());
+                    break;
+                case "price":
+                    repository.Sort(new SortedByPrice());
+                    break;
+            }
+            Console.WriteLine("Book sorted by {0}",tag);
+            Line();
+        }
+
 
         public static void SaveToFile(BookRepository db) {
             db.Save();
