@@ -7,7 +7,7 @@ namespace Task1.Client{
 
         private static void Main(string[] args) {
             string path = ConfigurationManager.AppSettings["pathFileBooks"];
-            var repository = new FileBookRepository(new FileInfo(path));
+            var repository = new BookRepository(new FileInfo(path));
             bool working = true;
             while (working) { 
             WritterHelper.WriteListCommands();
@@ -27,6 +27,9 @@ namespace Task1.Client{
                         break;
                     case "5":
                         working = false;
+                        break;
+                    default:
+                        WritterHelper.IncorrectComand();
                         break;
                 }
 

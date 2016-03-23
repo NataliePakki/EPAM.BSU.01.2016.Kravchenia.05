@@ -17,7 +17,7 @@ namespace Task1{
         return string.Equals(Name, other.Name) && string.Equals(Author, other.Author) && Price == other.Price;
     }
 
-        public override string ToString() {
+     public override string ToString() {
         return "NAME:" + Name + ", AUTHOR:" + Author + ", PRICE:" + Price;
     }
 

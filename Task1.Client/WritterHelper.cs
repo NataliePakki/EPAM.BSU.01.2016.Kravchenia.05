@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Task1.BookExceptions;
 
 namespace Task1.Client{
     public static class WritterHelper{
@@ -13,7 +13,7 @@ namespace Task1.Client{
             Console.WriteLine("5) exit");
             Line();
         }
-        public static void AddBook(FileBookRepository db){
+        public static void AddBook(BookRepository db){
             string name, author;
             int price;
             Console.WriteLine("Enter book's name: ");
@@ -26,7 +26,7 @@ namespace Task1.Client{
                 return;
             }
             try{
-                db.AddBook(new Book(name, author, price));
+                db.Add(new Book(name, author, price));
             }
             catch (BookExistException ex){
                 Console.WriteLine(ex.Message);
@@ -34,34 +34,38 @@ namespace Task1.Client{
             Line();
         }
 
-        public static void DeleteBook(FileBookRepository db){
+        public static void DeleteBook(BookRepository db){
             Console.WriteLine("Enter book's name: ");
             string name = Console.ReadLine();
             try{
-                db.RemoveBook(name);
+                db.Remove(name);
                 Console.WriteLine("Book '{0}' delete", name);
             }
-            catch (BookNotFindException ex){
+            catch (BookNotFondException ex){
                 Console.WriteLine(ex.Message);
             }
             Line();
         }
-        public static void GetAllBooks(FileBookRepository db){
+        public static void GetAllBooks(BookRepository db){
             Console.WriteLine("List of all books:");
-            List<Book> books = db.GetBookList();
+            List<Book> books = db.GetList();
             if (books.Count == 0){
                 Console.WriteLine("Catalog is empty.");
                 return;
             }
-            foreach (Book b in db.GetBookList()){
+            foreach (Book b in db.GetList()){
                 Console.WriteLine(b.ToString());
             }
             Line();
         }
 
-        public static void SaveToFile(FileBookRepository db) {
+        public static void SaveToFile(BookRepository db) {
             db.Save();
             Console.WriteLine("Done.");
+        }
+
+        public static void IncorrectComand(){
+            Console.WriteLine("You write incorrect command. Try again.");
         }
         public static void Line(){
             Console.WriteLine("=======================================================");
