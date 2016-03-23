@@ -40,12 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
-    <Compile Include="BookExistException.cs" />
+    <Compile Include="BookExceptions\BookExistException.cs" />
     <Compile Include="BookFileProvider.cs" />
     <Compile Include="BookRepository.cs" />
-    <Compile Include="IBookProvider.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="BookNotFondException.cs" />
+    <Compile Include="Interfaces\IBookProvider.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="BookExceptions\BookNotFondException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
