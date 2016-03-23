@@ -4,7 +4,6 @@ using System.IO;
 
 namespace Task1.Client{
     public class Program {
-
         private static void Main(string[] args) {
             string path = ConfigurationManager.AppSettings["pathFileBooks"];
             var repository = new BookRepository(new FileInfo(path));
@@ -32,22 +31,29 @@ namespace Task1.Client{
                         WritterHelper.SortedByTag(repository,"price");
                         break;
                     case "7":
-                        WritterHelper.SaveToFile(repository);
+                        WritterHelper.FindAllByTag(repository, "name");
                         break;
                     case "8":
+                        WritterHelper.FindAllByTag(repository, "author");
+                        break;
+                    case "9":
+                        WritterHelper.FindAllByTag(repository, "price");
+                        break;
+                    case "0":
+                        WritterHelper.SaveToFile(repository);
+                        break;
+                    case "q":
                         working = false;
                         break;
                     default:
                         WritterHelper.IncorrectComand();
                         break;
+                        
                 }
 
             }
 
         }
-
-
         
-
     }
 }

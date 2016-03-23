@@ -2,8 +2,7 @@
 using System.IO;
 using Task1.Interfaces;
 
-namespace Task1
-{
+namespace Task1 {
     class BookFileProvider : IBookProvider {
         private readonly FileInfo booksFile;
         private BinaryReader reader;
@@ -25,7 +24,6 @@ namespace Task1
             }
 
         }
-
         public void Save(List<Book> books){
             File.Delete(booksFile.FullName);
             using (var writer = new BinaryWriter(File.Open(booksFile.FullName, FileMode.OpenOrCreate)))

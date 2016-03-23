@@ -44,8 +44,13 @@ namespace Task1 {
         }
         else throw new BookNotFondException(String.Format("Book '{0}' wasn't find", book.Name));
     }
-    public List<Book> FindAll(IEqualityComparer<Book> comparer){
-           throw new NotImplementedException();
+    public List<Book> FindAll(IEqualityComparer<Book> comparer, string item) {
+        int price;
+        if (int.TryParse(item, out price)) {
+            return books.FindAll(book => comparer.Equals(book, new Book(item, item, price)));
+        }
+        return books.FindAll(book => comparer.Equals(book, new Book(item, item, 0)));
+        
     }
 
     public void Sort(IComparer<Book> comparer){

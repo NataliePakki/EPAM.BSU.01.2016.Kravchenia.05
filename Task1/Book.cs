@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task1{
+namespace Task1 {
 
     public class Book : IEquatable<Book>{
         public Book(string name, string author, int price) {
@@ -11,15 +11,16 @@ namespace Task1{
     public string Name { get; set; }
     public string Author { get; set; }
     public int Price { get; set; }
-    public bool Equals(Book other) {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return string.Equals(Name, other.Name) && string.Equals(Author, other.Author) && Price == other.Price;
-    }
+
 
      public override string ToString() {
         return "NAME:" + Name + ", AUTHOR:" + Author + ", PRICE:" + Price;
     }
+     public bool Equals(Book other) {
+         if (ReferenceEquals(null, other)) return false;
+         if (ReferenceEquals(this, other)) return true;
+         return string.Equals(Name, other.Name) && string.Equals(Author, other.Author) && Price == other.Price;
+     }
 
     public override bool Equals(object obj) {
         if (ReferenceEquals(null, obj)) return false;
