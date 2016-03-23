@@ -37,8 +37,9 @@ namespace Task1.Client{
         public static void DeleteBook(BookRepository db){
             Console.WriteLine("Enter book's name: ");
             string name = Console.ReadLine();
-            try{
-                db.Remove(name);
+            try {
+                Book book = db.GetBook(name);
+                db.Remove(book);
                 Console.WriteLine("Book '{0}' delete", name);
             }
             catch (BookNotFondException ex){
