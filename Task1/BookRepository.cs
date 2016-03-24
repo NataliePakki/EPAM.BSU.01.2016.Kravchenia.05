@@ -78,7 +78,7 @@ namespace Task1 {
     }
 
     public void Sort(IComparer<Book> comparer){
-            logger.Info("Book sorted");
+            logger.Info("Book sorted.");
             books.Sort(comparer);
     }
    public void Save(){
@@ -87,19 +87,6 @@ namespace Task1 {
     public void Load() {
            provider.Load(out books);
     }
-    private bool disposed = false;
  
-    public virtual void Dispose(bool disposing){
-        if(!disposed){
-            if(disposing) {
-                books = null;
-            }
-        }
-        disposed = true;
-    }
- 
-    public void Dispose(){
-        Dispose(true);
-    }
     }
 }
