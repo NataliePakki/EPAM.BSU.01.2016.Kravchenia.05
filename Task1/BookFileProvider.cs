@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using NLog;
 using Task1.Interfaces;
 
 namespace Task1 {
     class BookFileProvider : IBookProvider {
         private readonly FileInfo booksFile;
         private BinaryReader reader;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         public BookFileProvider(FileInfo booksFile) {
-            if (!booksFile.Exists)
+            logger.Info("BookFileProvider(): ");
+            if (!booksFile.Exists) {
+                logger.Fatal($"Could not find the books file {booksFile.FullName} to process.");
                 throw new FileNotFoundException("Could not find the books file to process.");
+            }
             this.booksFile = booksFile;
         }
         public void Load(out List<Book> books) {
+            logger.Info($"Load books from {booksFile.Name}: ");
             books = new List<Book>();
             using (reader = new BinaryReader(File.Open(booksFile.FullName, FileMode.Open)))
             {
@@ -20,11 +26,14 @@ namespace Task1 {
                     string author = reader.ReadString();
                     int price = reader.ReadInt32();
                     books.Add(new Book(name, author, price));
+                    logger.Info($"Book: NAME: {name}, AUTHOR: {author}, PRICE: {price} was loaded.");
                 }
             }
+            logger.Info("All books were loaded.");
 
         }
         public void Save(List<Book> books){
+            logger.Info($"Save books in {booksFile.Name}.");
             File.Delete(booksFile.FullName);
             using (var writer = new BinaryWriter(File.Open(booksFile.FullName, FileMode.OpenOrCreate)))
             {
@@ -32,8 +41,10 @@ namespace Task1 {
                     writer.Write(b.Name);
                     writer.Write(b.Author);
                     writer.Write(b.Price);
+                    logger.Info($"Book: NAME: {b.Name}, AUTHOR: {b.Author}, PRICE: {b.Price} was saved.");
                 }
             }
+            logger.Info("All books were saved.");
         }
     }
 }

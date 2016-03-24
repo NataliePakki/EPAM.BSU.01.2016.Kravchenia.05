@@ -5,6 +5,8 @@ using System.IO;
 namespace Task1.Client{
     public class Program {
         private static void Main(string[] args) {
+
+
             string path = ConfigurationManager.AppSettings["pathFileBooks"];
             var repository = new BookRepository(new FileInfo(path));
             bool working = true;

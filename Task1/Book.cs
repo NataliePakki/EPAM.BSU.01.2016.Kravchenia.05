@@ -14,7 +14,7 @@ namespace Task1 {
 
 
      public override string ToString() {
-        return "NAME:" + Name + ", AUTHOR:" + Author + ", PRICE:" + Price;
+        return $"NAME: {Name}, AUTHOR: {Author}, PRICE: {Price}.";
     }
      public bool Equals(Book other) {
          if (ReferenceEquals(null, other)) return false;
@@ -31,8 +31,8 @@ namespace Task1 {
 
     public override int GetHashCode(){
         unchecked{
-            int hashCode = (Name != null ? Name.GetHashCode() : 0);
-            hashCode = (hashCode * 397) ^ (Author != null ? Author.GetHashCode() : 0);
+            int hashCode = Name?.GetHashCode() ?? 0;
+            hashCode = (hashCode * 397) ^ (Author?.GetHashCode() ?? 0);
             hashCode = (hashCode * 397) ^ Price;
             return hashCode;
         }

@@ -18,7 +18,7 @@ namespace Task1.Client{
             Console.WriteLine("8) find books by author");
             Console.WriteLine("9) find books by price");
             Console.WriteLine("0) save to file");
-            Console.WriteLine("8) exit");
+            Console.WriteLine("q) exit");
             Line();
         }
         public static void AddBook(BookRepository db){
@@ -41,7 +41,7 @@ namespace Task1.Client{
             try{
                 db.Add(new Book(name, author, price));
             }
-            catch (BookExistException ex){
+            catch (BookAlreadyExistException ex){
                 Console.WriteLine(ex.Message);
             }
             Line();
