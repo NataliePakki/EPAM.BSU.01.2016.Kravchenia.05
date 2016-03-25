@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using NLog;
 using Task1.BookExceptions;
 using Task1.Interfaces;
 
 namespace Task1 {
-   public class BookRepository: IRepository<Book>{
+   public class BookService {
        private List<Book> books;
        private readonly IBookProvider provider;
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public BookRepository(FileInfo booksFile){
-        provider = new BookFileProvider(booksFile);
-        Load();
-        }
-    public BookRepository(IBookProvider provider) {
+    public BookService(IBookProvider provider) {
         this.provider = provider;
-        Load();
+        books = Load();
     }
-    public List<Book> GetList() {
+        public BookService(IEnumerable<Book> books) {
+            this.books = books.ToList();
+        }
+        public List<Book> GetList() {
         return books;
     }
     public Book GetBook(string name){
@@ -44,7 +43,7 @@ namespace Task1 {
                 logger.Info($"Book {book.Name} added.");
                 books.Add(book);
         } else {
-            logger.Error("This book already exist.");
+            logger.Warn("This book already exist.");
             throw new BookAlreadyExistException("This book already exist.");
         }
     }
@@ -60,7 +59,7 @@ namespace Task1 {
                 logger.Info($"Book '{book.Name}' remove.");
                 books.Remove(deleteBook);
         } else {
-                logger.Error($"Book '{book.Name}' wasn't find");
+                logger.Warn($"Book '{book.Name}' wasn't find");
                 throw new BookNotFondException($"Book '{book.Name}' wasn't find");
         }
     }
@@ -84,8 +83,8 @@ namespace Task1 {
    public void Save(){
        provider.Save(books);
     }
-    public void Load() {
-           provider.Load(out books);
+    public List<Book> Load() {
+           return provider.Load();
     }
  
     }

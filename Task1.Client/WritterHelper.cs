@@ -21,7 +21,7 @@ namespace Task1.Client{
             Console.WriteLine("q) exit");
             Line();
         }
-        public static void AddBook(BookRepository db){
+        public static void AddBook(BookService db){
             string name, author;
             int price;
             Clear();
@@ -47,7 +47,7 @@ namespace Task1.Client{
             Line();
         }
 
-        public static void DeleteBook(BookRepository db){
+        public static void DeleteBook(BookService db){
             Clear();
             Console.WriteLine("DELETE BOOK: ");
             Line();
@@ -63,7 +63,7 @@ namespace Task1.Client{
             }
             Line();
         }
-        public static void GetAllBooks(BookRepository db){
+        public static void GetAllBooks(BookService db){
             Clear();
             Console.WriteLine("List of all books:");
             List<Book> books = db.GetList();
@@ -77,7 +77,7 @@ namespace Task1.Client{
             Line();
         }
 
-        public static void SortedByTag(BookRepository repository, string tag) {
+        public static void SortedByTag(BookService repository, string tag) {
             switch (tag) {
                 case "name":
                     repository.Sort(new SortedByName());
@@ -93,7 +93,7 @@ namespace Task1.Client{
             Console.WriteLine("Book sorted by {0}",tag);
             Line();
         }
-        public static void FindAllByTag(BookRepository repository, string tag){
+        public static void FindAllByTag(BookService repository, string tag){
             Clear();
             Console.WriteLine("FIND BY {0}: ", tag.ToUpper());
             Line();
@@ -124,7 +124,7 @@ namespace Task1.Client{
         }
 
 
-        public static void SaveToFile(BookRepository db) {
+        public static void SaveToFile(BookService db) {
             Clear();
             db.Save();
             Console.WriteLine("Done.");

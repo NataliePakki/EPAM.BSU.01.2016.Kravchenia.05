@@ -46,12 +46,11 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookExceptions\BookAlreadyExistException.cs" />
     <Compile Include="BookFileProvider.cs" />
-    <Compile Include="BookRepository.cs" />
+    <Compile Include="BookService.cs" />
     <Compile Include="Find\EqualByAuthor.cs" />
     <Compile Include="Find\EqualByName.cs" />
     <Compile Include="Find\EqualByPrice.cs" />
     <Compile Include="Interfaces\IBookProvider.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="BookExceptions\BookNotFondException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sort\SortedByAuthor.cs" />

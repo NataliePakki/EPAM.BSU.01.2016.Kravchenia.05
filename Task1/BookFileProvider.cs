@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using NLog;
 using Task1.Interfaces;
 
 namespace Task1 {
-    class BookFileProvider : IBookProvider {
+    public class BookFileProvider : IBookProvider {
         private readonly FileInfo booksFile;
         private BinaryReader reader;
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -16,9 +17,9 @@ namespace Task1 {
             }
             this.booksFile = booksFile;
         }
-        public void Load(out List<Book> books) {
+        public List<Book> Load() {
+            List<Book> books = new List<Book>();
             logger.Info($"Load books from {booksFile.Name}: ");
-            books = new List<Book>();
             using (reader = new BinaryReader(File.Open(booksFile.FullName, FileMode.Open)))
             {
                 while (reader.PeekChar() > -1){
@@ -30,7 +31,7 @@ namespace Task1 {
                 }
             }
             logger.Info("All books were loaded.");
-
+            return books;
         }
         public void Save(List<Book> books){
             logger.Info($"Save books in {booksFile.Name}.");

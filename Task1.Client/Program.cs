@@ -8,7 +8,7 @@ namespace Task1.Client{
 
 
             string path = ConfigurationManager.AppSettings["pathFileBooks"];
-            var repository = new BookRepository(new FileInfo(path));
+            var repository = new BookService(new BookFileProvider(new FileInfo(path)));
             bool working = true;
             while (working) { 
             WritterHelper.WriteListCommands();
