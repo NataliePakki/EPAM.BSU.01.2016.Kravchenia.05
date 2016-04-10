@@ -1,8 +1,9 @@
 ﻿using System;
 
 namespace Task1 {
-
+    [Serializable]
     public class Book : IEquatable<Book>{
+        public Book() { }
         public Book(string name, string author, int price) {
         Name = name;
         Author = author;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using NLog;
 using Task1.Interfaces;
@@ -18,8 +17,8 @@ namespace Task1 {
             this.booksFile = booksFile;
         }
         public List<Book> Load() {
-            List<Book> books = new List<Book>();
             logger.Info($"Load books from {booksFile.Name}: ");
+            var books = new List<Book>();
             using (reader = new BinaryReader(File.Open(booksFile.FullName, FileMode.Open)))
             {
                 while (reader.PeekChar() > -1){
@@ -30,14 +29,15 @@ namespace Task1 {
                     logger.Info($"Book: NAME: {name}, AUTHOR: {author}, PRICE: {price} was loaded.");
                 }
             }
+            
             logger.Info("All books were loaded.");
             return books;
+
         }
         public void Save(List<Book> books){
             logger.Info($"Save books in {booksFile.Name}.");
             File.Delete(booksFile.FullName);
-            using (var writer = new BinaryWriter(File.Open(booksFile.FullName, FileMode.OpenOrCreate)))
-            {
+            using (var writer = new BinaryWriter(File.Open(booksFile.FullName, FileMode.OpenOrCreate))) {
                 foreach (Book b in books){
                     writer.Write(b.Name);
                     writer.Write(b.Author);

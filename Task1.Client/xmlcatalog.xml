@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Books>
+  <Book>
+    <Name>Natalie</Name>
+    <Author>Pakki</Author>
+    <Price>123</Price>
+  </Book>
+  <Book>
+    <Name>Natalie</Name>
+    <Author>Wake</Author>
+    <Price>123</Price>
+  </Book>
+  <Book>
+    <Name>Natalie</Name>
+    <Author>Cermit</Author>
+    <Price>234</Price>
+  </Book>
+</Books>

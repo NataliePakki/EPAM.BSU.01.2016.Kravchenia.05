@@ -46,7 +46,9 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookExceptions\BookAlreadyExistException.cs" />
     <Compile Include="BookFileProvider.cs" />
+    <Compile Include="BookSerializeFileProvider.cs" />
     <Compile Include="BookService.cs" />
+    <Compile Include="BookXmlProvider.cs" />
     <Compile Include="Find\EqualByAuthor.cs" />
     <Compile Include="Find\EqualByName.cs" />
     <Compile Include="Find\EqualByPrice.cs" />

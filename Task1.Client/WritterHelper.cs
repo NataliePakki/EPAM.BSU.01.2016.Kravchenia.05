@@ -18,7 +18,16 @@ namespace Task1.Client{
             Console.WriteLine("8) find books by author");
             Console.WriteLine("9) find books by price");
             Console.WriteLine("0) save to file");
+            Console.WriteLine("l) load from file");
             Console.WriteLine("q) exit");
+            Line();
+        }
+
+        public static void WriteListRepositories() {
+            Console.WriteLine("Choose repository:");
+            Console.WriteLine("1) File Repository");
+            Console.WriteLine("2) File Serialize Repository");
+            Console.WriteLine("3) XML Repository");
             Line();
         }
         public static void AddBook(BookService db){
@@ -127,6 +136,11 @@ namespace Task1.Client{
         public static void SaveToFile(BookService db) {
             Clear();
             db.Save();
+            Console.WriteLine("Done.");
+        }
+        public static void Load(BookService db) {
+            Clear();
+            db.Load();
             Console.WriteLine("Done.");
         }
 
