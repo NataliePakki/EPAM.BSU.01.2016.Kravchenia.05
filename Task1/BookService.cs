@@ -13,7 +13,7 @@ namespace Task1 {
 
     public BookService(IBookProvider provider) {
         this.provider = provider;
-        books = Load();
+        books = new List<Book>();
     }
         public BookService(IEnumerable<Book> books) {
             this.books = books.ToList();
